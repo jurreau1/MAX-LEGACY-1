@@ -28,3 +28,6 @@ capabilities:
 
   games:
     provider: Umbrella Games
+
+  research:
+    provider: Umbrella Research
