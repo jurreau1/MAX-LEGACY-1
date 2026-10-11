@@ -1,0 +1,36 @@
+schema_version: "1.0"
+
+registries:
+
+  claims:
+    path: max-reality/claims/
+
+  predictions:
+    path: max-reality/predictions/
+
+  experiments:
+    path: max-reality/experiments/
+
+  evidence:
+    path: max-reality/evidence/
+
+  replications:
+    path: max-reality/replications/
+
+  knowledge:
+    path: max-reality/knowledge/
+
+  events:
+    path: mdt/evolution-ledger/
+
+  entities:
+    path: knowledge-graph/entities/
+
+  domains:
+    path: knowledge-graph/domains/
+
+  relationships:
+    path: knowledge-graph/relationships/
+
+  icvs:
+    path: knowledge-graph/icvs/

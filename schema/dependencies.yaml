@@ -1,0 +1,35 @@
+schema_version: "1.0"
+
+dependencies:
+
+  MAX-QUANTUMN:
+
+    depends_on:
+      - MAX-Math
+      - MAX-Calculus
+
+    affects:
+      - MAX-SIM
+      - Knowledge-Graph
+      - Claim-Registry
+
+  MAX-REALITY:
+
+    depends_on:
+      - Claims
+      - Predictions
+      - Evidence
+      - Replications
+
+    affects:
+      - Knowledge-Objects
+
+  SIM-UNIVERSITY:
+
+    depends_on:
+      - Knowledge-Graph
+
+    affects:
+      - Districts
+      - ICVs
+      - Navigation
