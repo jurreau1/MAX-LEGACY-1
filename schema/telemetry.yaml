@@ -18,15 +18,15 @@ telemetry:
       - evidence_added
       - replications_completed
       - confidence_updates
-      - reality_alignment_changes
+      - reality_alignment_updates
 
   simulation:
 
     metrics:
 
       - simulation_runs
-      - branches_explored
       - scenarios_generated
+      - branches_explored
 
   umbrella:
 
@@ -34,14 +34,15 @@ telemetry:
 
       - customers
       - revenue_events
-      - proposals_sent
       - active_projects
+      - subscriptions
 
   ecosystem:
 
     metrics:
 
-      - total_domains
       - active_domains
-      - knowledge_growth
-      - reality_alignment_average
+      - total_knowledge_objects
+      - evidence_entries
+      - replication_entries
+      - average_reality_alignment
