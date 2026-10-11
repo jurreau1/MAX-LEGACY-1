@@ -23,7 +23,7 @@ states:
       - replication
 
   replication:
-    description: Confirmed independently
+    description: Independently confirmed result
     next:
       - knowledge
 
