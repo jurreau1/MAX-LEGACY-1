@@ -1,0 +1,32 @@
+schema_version: "1.0"
+
+states:
+
+  claim:
+    description: Initial assertion
+    next:
+      - prediction
+
+  prediction:
+    description: Testable expectation
+    next:
+      - experiment
+
+  experiment:
+    description: Structured test
+    next:
+      - evidence
+
+  evidence:
+    description: Observable result
+    next:
+      - replication
+
+  replication:
+    description: Confirmed independently
+    next:
+      - knowledge
+
+  knowledge:
+    description: Validated knowledge object
+    next: []

@@ -1,0 +1,48 @@
+schema_version: "1.0"
+
+domains:
+
+  - id: academic
+    name: Academic District
+    owner: SIM-UNIVERSITY
+    status: active
+
+  - id: research
+    name: Research District
+    owner: MAX-Institute
+    status: active
+
+  - id: validation
+    name: Validation District
+    owner: MAX-REALITY
+    status: active
+
+  - id: simulation
+    name: Simulation District
+    owner: MAX-SIM
+    status: active
+
+  - id: sports
+    name: Sports District
+    owner: Umbrella Sports
+    status: planned
+
+  - id: governance
+    name: Governance District
+    owner: Umbrella Governance
+    status: planned
+
+  - id: finance
+    name: Finance District
+    owner: Umbrella Finance
+    status: future
+
+  - id: weather
+    name: Weather District
+    owner: Umbrella Weather
+    status: future
+
+  - id: games
+    name: Games District
+    owner: Umbrella Games
+    status: future

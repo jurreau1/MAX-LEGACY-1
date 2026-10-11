@@ -1,0 +1,35 @@
+schema_version: "1.0"
+
+reality_alignment:
+
+  concept:
+    score_min: 0
+    score_max: 10
+
+  formalized:
+    score_min: 10
+    score_max: 25
+
+  simulated:
+    score_min: 25
+    score_max: 40
+
+  predicted:
+    score_min: 40
+    score_max: 55
+
+  evidence_supported:
+    score_min: 55
+    score_max: 70
+
+  replicated:
+    score_min: 70
+    score_max: 85
+
+  established:
+    score_min: 85
+    score_max: 95
+
+  reality_aligned:
+    score_min: 95
+    score_max: 100

@@ -1,0 +1,24 @@
+schema_version: "1.0"
+
+promotion_rules:
+
+  claim_to_prediction:
+    min_confidence: 0
+    min_alignment: 0
+
+  prediction_to_experiment:
+    min_confidence: 20
+    min_alignment: 10
+
+  experiment_to_evidence:
+    min_confidence: 40
+    min_alignment: 30
+
+  evidence_to_replication:
+    min_confidence: 55
+    min_alignment: 50
+
+  replication_to_knowledge:
+    min_confidence: 75
+    min_alignment: 70
+    final_status: "Validated"

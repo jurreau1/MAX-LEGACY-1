@@ -1,0 +1,30 @@
+schema_version: "1.0"
+
+capabilities:
+
+  knowledge:
+    provider: MAX-Institute
+
+  validation:
+    provider: MAX-REALITY
+
+  simulation:
+    provider: MAX-SIM
+
+  memory:
+    provider: Knowledge Graph
+
+  governance:
+    provider: Umbrella Governance
+
+  sports:
+    provider: Umbrella Sports
+
+  finance:
+    provider: Umbrella Finance
+
+  weather:
+    provider: Umbrella Weather
+
+  games:
+    provider: Umbrella Games

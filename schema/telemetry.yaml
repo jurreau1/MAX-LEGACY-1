@@ -1,0 +1,47 @@
+schema_version: "1.0"
+
+telemetry:
+
+  research:
+
+    metrics:
+
+      - claims_created
+      - predictions_created
+      - experiments_created
+      - knowledge_objects_created
+
+  validation:
+
+    metrics:
+
+      - evidence_added
+      - replications_completed
+      - confidence_updates
+      - reality_alignment_changes
+
+  simulation:
+
+    metrics:
+
+      - simulation_runs
+      - branches_explored
+      - scenarios_generated
+
+  umbrella:
+
+    metrics:
+
+      - customers
+      - revenue_events
+      - proposals_sent
+      - active_projects
+
+  ecosystem:
+
+    metrics:
+
+      - total_domains
+      - active_domains
+      - knowledge_growth
+      - reality_alignment_average
