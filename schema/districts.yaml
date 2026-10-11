@@ -4,45 +4,54 @@ domains:
 
   - id: academic
     name: Academic District
-    owner: SIM-UNIVERSITY
+    environment: SIM-UNIVERSITY
+    owner: MAX-Institute
     status: active
 
   - id: research
     name: Research District
+    environment: SIM-UNIVERSITY
     owner: MAX-Institute
     status: active
 
   - id: validation
     name: Validation District
+    environment: SIM-UNIVERSITY
     owner: MAX-REALITY
     status: active
 
   - id: simulation
     name: Simulation District
+    environment: SIM-UNIVERSITY
     owner: MAX-SIM
     status: active
 
-  - id: sports
-    name: Sports District
-    owner: Umbrella Sports
-    status: planned
-
   - id: governance
     name: Governance District
+    environment: SIM-UNIVERSITY
     owner: Umbrella Governance
+    status: planned
+
+  - id: sports
+    name: Sports District
+    environment: SIM-UNIVERSITY
+    owner: Umbrella Sports
     status: planned
 
   - id: finance
     name: Finance District
+    environment: SIM-UNIVERSITY
     owner: Umbrella Finance
     status: future
 
   - id: weather
     name: Weather District
+    environment: SIM-UNIVERSITY
     owner: Umbrella Weather
     status: future
 
   - id: games
     name: Games District
+    environment: SIM-UNIVERSITY
     owner: Umbrella Games
     status: future
