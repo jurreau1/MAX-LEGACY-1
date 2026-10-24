@@ -1,5 +1,0 @@
-name = "max-legacy"
-main = "../workers/api_worker.py"
-compatibility_date = "2025-10-24"
-compatibility_flags = ["python_workers"]
-workers_dev = true
