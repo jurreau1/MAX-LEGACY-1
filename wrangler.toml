@@ -1,4 +1,4 @@
-name = "max-legacy"
+name = "max-legacy-1"
 main = "workers/api_worker.py"
 compatibility_date = "2025-10-24"
 compatibility_flags = ["python_workers"]
