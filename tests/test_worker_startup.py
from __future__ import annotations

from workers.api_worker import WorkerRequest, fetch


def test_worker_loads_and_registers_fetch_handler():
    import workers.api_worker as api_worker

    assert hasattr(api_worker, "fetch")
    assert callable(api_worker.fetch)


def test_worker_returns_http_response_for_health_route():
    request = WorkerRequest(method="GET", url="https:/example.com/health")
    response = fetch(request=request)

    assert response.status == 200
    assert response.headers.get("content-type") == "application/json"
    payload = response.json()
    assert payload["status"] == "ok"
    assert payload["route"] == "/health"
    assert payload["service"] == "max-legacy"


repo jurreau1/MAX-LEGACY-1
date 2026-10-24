@@ -1,0 +1,124 @@
+from __future__ import annotations
+
+import json
+from typing import Any, Dict, Iterable, Optional
+from urllib.parse import urlparse
+
+
+ROUTE_PAYLOADS = {
+    "/health": {"status": "ok", "service": "max-legacy", "runtime": "cloudflare-worker", "route": "/health"},
+    "/knowledge": {"status": "ok", "service": "max-legacy", "runtime": "cloudflare-worker", "route": "/knowledge"},
+    "/events": {"status": "ok", "service": "max-legacy", "runtime": "cloudflare-worker", "route": "/events"},
+    "/customers": {"status": "ok", "service": "max-legacy", "runtime": "cloudflare-worker", "route": "/customers"},
+    "/projects": {"status": "ok", "service": "max-legacy", "runtime": "cloudflare-worker", "route": "/projects"},
+    "/revenue": {"status": "ok", "service": "max-legacy", "runtime": "cloudflare-worker", "route": "/revenue"},
+    "/capabilities": {"status": "ok", "service": "max-legacy", "runtime": "cloudflare-worker", "route": "/capabilities"},
+    "/simulations": {"status": "ok", "service": "max-legacy", "runtime": "cloudflare-worker", "route": "/simulations"},
+    "/reality": {"status": "ok", "service": "max-legacy", "runtime": "cloudflare-worker", "route": "/reality"},
+}
+
+
+class WorkerRequest:
+    """Minimal compatibility wrapper for Worker-style request access."""
+
+    def __init__(
+        self,
+        method: str = "GET",
+        url: str = "https://example.com",
+        headers: Optional[Dict[str, str]] = None,
+        body: Any = None,
+    ):
+        self.method = (method or "GET").upper()
+        self.url = url or "https://example.com"
+        self.headers = headers or {}
+        self.body = body
+        self.path = self._extract_path(self.url)
+
+    @staticmethod
+    def _extract_path(url: str) -> str:
+        if not url:
+            return "/"
+        parsed = urlparse(str(url))
+        return parsed.path or "/"
+
+
+class WorkerResponse:
+    """Small response object that matches Cloudflare Worker behavior enough for tests."""
+
+    def __init__(self, body: Any, status: int = 200, headers: Optional[Dict[str, str]] = None):
+        self.status = status
+        self.headers = {"content-type": "application/json", **(headers or {})}
+        self.body = body
+
+    def to_json(self) -> str:
+        if isinstance(self.body, (dict, list, tuple)):
+            return json.dumps(self.body)
+        if self.body is None:
+            return "null"
+        return str(self.body)
+
+    def json(self) -> Any:
+        if isinstance(self.body, (dict, list, tuple)):
+            return self.body
+        if self.body in (None, ""):
+            return None
+        try:
+            return json.loads(str(self.body))
+        except (TypeError, ValueError):
+            return self.body
+
+
+def _get_request_path(request: Any) -> str:
+    if request is None:
+        return "/"
+    if hasattr(request, "url"):
+        return WorkerRequest._extract_path(getattr(request, "url"))
+    if hasattr(request, "path"):
+        return str(getattr(request, "path"))
+    if isinstance(request, str):
+        return WorkerRequest._extract_path(request)
+    return "/"
+
+
+def _build_payload(request: Any, route: str) -> Dict[str, Any]:
+    payload = dict(ROUTE_PAYLOADS.get(route, {"status": "ok", "route": route}))
+    payload.update(
+        {
+            "method": getattr(request, "method", "GET"),
+            "path": route,
+        }
+    )
+    return payload
+
+
+def worker_entry(request: Any, env: Optional[Dict[str, Any]] = None, ctx: Optional[Dict[str, Any]] = None) -> WorkerResponse:
+    """Cloudflare Python Worker entrypoint compatible with standard fetch registration."""
+    path = _get_request_path(request)
+    route = path.split("?", 1)[0]
+
+    if route in ROUTE_PAYLOADS:
+        return WorkerResponse(_build_payload(request, route), status=200, headers={"content-type": "application/json"})
+
+    return WorkerResponse(
+        {"status": "error", "service": "max-legacy", "runtime": "cloudflare-worker", "path": route, "error": "not_found"},
+        status=404,
+        headers={"content-type": "application/json"},
+    )
+
+
+def fetch(request: Any, env: Optional[Dict[str, Any]] = None, ctx: Optional[Dict[str, Any]] = None) -> WorkerResponse:
+    """Register the fetch handler expected by Cloudflare Python Workers."""
+    return worker_entry(request=request, env=env, ctx=ctx)
+
+
+def scheduled(event: Dict[str, Any], env: Optional[Dict[str, Any]] = None, ctx: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    return {
+        "status": "ok",
+        "service": "max-legacy",
+        "runtime": "cloudflare-worker",
+        "event": event or {},
+    }
+
+
+__all__ = ["WorkerRequest", "WorkerResponse", "fetch", "worker_entry", "scheduled"]
+
